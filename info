@@ -1,3 +1,5 @@
 This repo tracks of the devicestore api development.
 @author N. Eldin
 @since 3/18/2022
+
+$ git checkout -b new_branch_name
