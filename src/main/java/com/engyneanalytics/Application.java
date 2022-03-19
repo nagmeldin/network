@@ -25,13 +25,19 @@ public class Application {
     @EventListener
     @Transactional
     void startup (StartupEvent startupEvent){
-        Maker savedMaker =  makerRepository.save(new Maker(null,"Netgear")); //---->(1)
+        Maker savedMaker =  makerRepository.save(new Maker(null,"AT&T")); //---->(1)
                 System.out.println("savedMaker.id() = " + savedMaker);
-        deviceRepository.saveAll(Arrays.asList(
+        deviceRepository.saveAll(Arrays.asList(                                       //---->(2)
                 new Device(null, "Cisco", 12, savedMaker),
                 new Device(null, "Juniper", 19, savedMaker),
                 new Device(null, "Casa", 11, savedMaker),
-                new Device(null, "Arris", 6, savedMaker)
+                new Device(null, "Arris", 6, savedMaker),
+                new Device(null, "D-link", 13, savedMaker),
+                new Device(null, "Encore", 7, savedMaker),
+                new Device(null, "Google", 5, savedMaker),
+                new Device(null, "Microlink", 8, savedMaker),
+                new Device(null, "Motorala", 15, savedMaker),
+                new Device(null, "Mercury", 21, savedMaker)
         ));
 
     }
