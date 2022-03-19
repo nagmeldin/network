@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.engyneanalytics
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [annotation-api, app-name, data, data-jdbc, github-workflow-graal-docker-registry, gradle, h2, http-client, jackson-databind, java, java-application, jdbc-hikari, junit, logback, micronaut-build, netty-server, readme, shade, yaml]
