@@ -29,7 +29,9 @@ public class Application {
                 System.out.println("savedMaker.id() = " + savedMaker);
         deviceRepository.saveAll(Arrays.asList(
                 new Device(null, "Cisco", 12, savedMaker),
-                new Device(null, "Juniper", 19, savedMaker)
+                new Device(null, "Juniper", 19, savedMaker),
+                new Device(null, "Casa", 11, savedMaker),
+                new Device(null, "Arris", 6, savedMaker)
         ));
 
     }

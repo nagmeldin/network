@@ -22,7 +22,7 @@ class DevicestoreTest {
 
     @Test
     void testDevice() {
-        Assertions.assertEquals(2,
+        Assertions.assertEquals(4,
                 deviceRepository.count()
         );
     }
