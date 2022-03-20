@@ -6,10 +6,19 @@ import io.micronaut.http.annotation.Get;
 
 public sealed interface DeviceStoreApi {
 
+    @Get("/")
+    String index();
+    // Test it: http://localhost:8080/   -> Welcome to network routers portal
+
     @Get("describe/{type}/{id}")
     String describe(String type, Long id);
     // Test it: http://localhost:8080/describe/maker/1 -> AT&T
     //          http://localhost:8080/describe/device/2 -> Juniper
+
+    @Get("/any")
+    String getAnyDevice();
+    // Test it: http://localhost:8080/any -> (refresh to get different device everytime)
+
 
     // Unseal version of DeviceStore Api(TBD in testing):
      non-sealed interface DeviceClient extends DeviceStoreApi { }
@@ -25,9 +34,22 @@ public sealed interface DeviceStoreApi {
         private final DeviceRepository deviceRepository;
         private final MakerRepository makerRepository;
 
-        public DeviceController(DeviceRepository deviceRepository, MakerRepository makerRepository) {
+        // DeviceService injection:
+        private final DeviceService deviceService;
+
+        public DeviceController(DeviceRepository deviceRepository, MakerRepository makerRepository, DeviceService deviceService) {
             this.deviceRepository = deviceRepository;
             this.makerRepository = makerRepository;
+            this.deviceService = deviceService;
+        }
+
+
+        public String index(){
+            return "Welcome to network routers portal";
+        }
+
+        public String getAnyDevice(){
+            return deviceService.getRandomBrand();
         }
 
         public String describe(String type, Long id){
@@ -38,6 +60,7 @@ public sealed interface DeviceStoreApi {
                              case "maker" -> this.makerRepository;
                              default ->null;
                     };
+
 
             //2. Query device os and maker name based on entity using J-17 Pattern Matching:
 

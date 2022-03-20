@@ -18,6 +18,8 @@ class DevicestoreTest {
     MakerRepository makerRepository;
     @Inject
     DeviceRepository deviceRepository;
+    @Inject
+    DeviceService deviceService;
 
     @Client("/")
     interface TestDeviceStoreClient extends DeviceStoreApi.DeviceClient{} // can do this because it's unsealed that you can extend here
@@ -47,7 +49,6 @@ class DevicestoreTest {
         Assertions.assertEquals("Cisco", devices_db);
       */
     }
-
     @Test
     void testBrand() {
         Assertions.assertTrue(this.brands.contains("Cisco"));
@@ -57,8 +58,6 @@ class DevicestoreTest {
         Assertions.assertTrue(this.brands.contains("Google"));
     }
 
-
-
     @Test
     void testMaker(TestDeviceStoreClient client ) {
         Maker maker = makerRepository.findAll().iterator().next();
@@ -67,4 +66,9 @@ class DevicestoreTest {
         Assertions.assertEquals("AT&T", maker_db);
     }
 
+    @Test
+    void testDeviceService() {
+        String randomDevice = deviceService.getRandomBrand();
+        Assertions.assertTrue( brands.contains(randomDevice));
+    }
 }

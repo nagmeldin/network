@@ -42,5 +42,7 @@ public class Application {
 
     }
 }
-// Test it: http://localhost:8080/describe/maker/1 -> AT&T
+// Test it: http://localhost:8080/   -> Welcome to network routers portal
+//          http://localhost:8080/any -> (refresh to get different device everytime)
+//          http://localhost:8080/describe/maker/1 -> AT&T
 //          http://localhost:8080/describe/device/2 -> Juniper
