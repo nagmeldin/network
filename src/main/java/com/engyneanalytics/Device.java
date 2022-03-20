@@ -1,5 +1,6 @@
 package com.engyneanalytics;
 
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.data.annotation.GeneratedValue;
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;
@@ -13,11 +14,11 @@ public record Device(
         @GeneratedValue
         @Id
         Long id,
-        @NotBlank
+        @NotNull
         String os,
         @Positive
         int weight,
-        @NotNull
+        @Nullable
         Maker maker
 ) implements Entity<Long> {
 }

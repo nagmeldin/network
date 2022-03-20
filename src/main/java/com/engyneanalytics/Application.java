@@ -27,7 +27,7 @@ public class Application {
     void startup (StartupEvent startupEvent){
         Maker savedMaker =  makerRepository.save(new Maker(null,"AT&T")); //---->(1)
                 System.out.println("savedMaker.id() = " + savedMaker);
-        deviceRepository.saveAll(Arrays.asList(                                       //---->(2)
+        deviceRepository.saveAll(Arrays.asList(                                    //---->(2)
                 new Device(null, "Cisco", 12, savedMaker),
                 new Device(null, "Juniper", 19, savedMaker),
                 new Device(null, "Casa", 11, savedMaker),
@@ -42,3 +42,5 @@ public class Application {
 
     }
 }
+// Test it: http://localhost:8080/describe/maker/1 -> AT&T
+//          http://localhost:8080/describe/device/2 -> Juniper
