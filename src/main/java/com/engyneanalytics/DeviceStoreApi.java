@@ -20,11 +20,11 @@ public sealed interface DeviceStoreApi {
     // Test it: http://localhost:8080/any -> (refresh to get different device everytime)
 
 
-    // Unseal version of DeviceStore Api(TBD in testing):
+    // Unseal version of DeviceStore Api(TBD 4 testing):
      non-sealed interface DeviceClient extends DeviceStoreApi { }
 
 
-    //Inside class implementation of above parent interface:
+    //Inner class implementation of above sealed parent interface - No 'permits' is needed but must be 'final':
 
     // Interface function implementation
     @Controller("/")
@@ -70,9 +70,9 @@ public sealed interface DeviceStoreApi {
                         case Maker maker -> maker.name();
                          default -> null;
                      }; Similarly: */
-                if ( crudRepository !=null && entity instanceof  Maker maker){
+                if (entity instanceof  Maker maker){      // No need 4 null check!
                     return maker.name();
-                }else if (crudRepository !=null && entity instanceof Device device){
+                }else if (  entity instanceof Device device){ // No need 4 null check!
                     return device.os();
                 }
             return null;

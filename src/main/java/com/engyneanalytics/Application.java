@@ -27,6 +27,7 @@ public class Application {
     void startup (StartupEvent startupEvent){
         Maker savedMaker =  makerRepository.save(new Maker(null,"AT&T")); //---->(1)
                 System.out.println("savedMaker.id() = " + savedMaker);
+
         deviceRepository.saveAll(Arrays.asList(                                    //---->(2)
                 new Device(null, "Cisco", 12, savedMaker),
                 new Device(null, "Juniper", 19, savedMaker),

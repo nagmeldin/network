@@ -41,13 +41,14 @@ class DevicestoreTest {
 
     @Test
     void testDeviceWeight(TestDeviceStoreClient client) {
-         /*
-        Device devices = deviceRepository.findAll().iterator().next(); // error!
 
-        String devices_db = client.describe("device",devices.id());
+        Device device = deviceRepository.findAll().iterator().next();
 
-        Assertions.assertEquals("Cisco", devices_db);
-      */
+        String device_db = client.describe("device",device.id());  // first entry is Cisco
+
+        Assertions.assertEquals("Cisco", device_db);
+        Assertions.assertEquals(12, device.weight());
+
     }
     @Test
     void testBrand() {
@@ -60,7 +61,7 @@ class DevicestoreTest {
 
     @Test
     void testMaker(TestDeviceStoreClient client ) {
-        Maker maker = makerRepository.findAll().iterator().next();
+        Maker maker = makerRepository.findAll().iterator().next();  // yield first entry
         String maker_db = client.describe("maker",maker.id());
         //Test it:
         Assertions.assertEquals("AT&T", maker_db);
