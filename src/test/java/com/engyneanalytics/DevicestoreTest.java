@@ -40,6 +40,14 @@ class DevicestoreTest {
     }
 
     @Test
+    void testAllDevices( DeviceService service) {
+        Assertions.assertEquals(2,
+                service.getAllDevices().size()
+        );
+    }
+
+
+    @Test
     void testDeviceWeight(TestDeviceStoreClient client) {
 
         Device device = deviceRepository.findAll().iterator().next();

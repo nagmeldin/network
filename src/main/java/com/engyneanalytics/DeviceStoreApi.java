@@ -4,6 +4,8 @@ import io.micronaut.data.repository.CrudRepository;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 
+import java.util.List;
+
 public sealed interface DeviceStoreApi {
 
     @Get("/")
@@ -19,6 +21,9 @@ public sealed interface DeviceStoreApi {
     String getAnyDevice();
     // Test it: http://localhost:8080/any -> (refresh to get different device everytime)
 
+    @Get("/devices")
+    List<Device> getAllDevices();
+    // Test it: http://localhost:8080/devices  (lists all devices)
 
     // Unseal version of DeviceStore Api(TBD 4 testing):
      non-sealed interface DeviceClient extends DeviceStoreApi { }
@@ -52,6 +57,10 @@ public sealed interface DeviceStoreApi {
             return deviceService.getRandomBrand();
         }
 
+        public List<Device> getAllDevices(){
+            return deviceService.getAllDevices();
+        }
+
         public String describe(String type, Long id){
             //1. Declare generic repo based on entity 'type' above:
             CrudRepository< ? extends  Entity<Long>, Long> crudRepository =
@@ -65,6 +74,8 @@ public sealed interface DeviceStoreApi {
             //2. Query device os and maker name based on entity using J-17 Pattern Matching:
 
                   Entity entity = crudRepository.findById(id).orElse(null);
+
+
                  /*   return switch(entity){
                         case Device device -> device.os();
                         case Maker maker -> maker.name();
