@@ -50,7 +50,6 @@ public sealed interface DeviceStoreApi {
             this.deviceService = deviceService;
         }
 
-
         public String index(){
             return "Welcome to network routers portal";
         }
