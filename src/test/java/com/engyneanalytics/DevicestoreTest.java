@@ -19,7 +19,7 @@ class DevicestoreTest {
     @Inject
     DeviceRepository deviceRepository;
     @Inject
-    DeviceService deviceService;
+    NetService deviceService;
 
     @Client("/")
     interface TestDeviceStoreClient extends DeviceStoreApi.DeviceClient{} // can do this because it's unsealed that you can extend here
@@ -40,12 +40,11 @@ class DevicestoreTest {
     }
 
     @Test
-    void testAllDevices( DeviceService service) {
-        Assertions.assertEquals(2,
-                service.getAllDevices().size()
+    void testAllDevices( NetService netService) {
+        Assertions.assertEquals(10,
+                netService.getAllDevices().size()
         );
     }
-
 
     @Test
     void testDeviceWeight(TestDeviceStoreClient client) {

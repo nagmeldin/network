@@ -22,6 +22,7 @@ public class Application {
         Micronaut.run(Application.class, args);
     }
 
+    /*
     @EventListener
     @Transactional
     void startup (StartupEvent startupEvent){
@@ -41,7 +42,7 @@ public class Application {
                 new Device(null, "Mercury", 21, savedMaker)
         ));
 
-    }
+    } */
 }
 // Test it: http://localhost:8080/   -> Welcome to network routers portal
 //          http://localhost:8080/any -> (refresh to get different device everytime)

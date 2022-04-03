@@ -25,7 +25,11 @@ public sealed interface DeviceStoreApi {
     List<Device> getAllDevices();
     // Test it: http://localhost:8080/devices  (lists all devices)
 
-    // Unseal version of DeviceStore Api(TBD 4 testing):
+    @Get("/devicesbackup")
+    List<Device> getBackupDevices();
+    // Test it: http://localhost:8080/devicesbackup  (lists all backup devices)
+
+    // Unseal version of DeviceStore Api(TBD for testing):
      non-sealed interface DeviceClient extends DeviceStoreApi { }
 
 
@@ -35,14 +39,12 @@ public sealed interface DeviceStoreApi {
     @Controller("/")
     final class DeviceController implements DeviceStoreApi {
 
-        // Device and Maker repos injection:
+        // Services & Db Repos injections:
+        private final NetService deviceService;
         private final DeviceRepository deviceRepository;
         private final MakerRepository makerRepository;
 
-        // DeviceService injection:
-        private final DeviceService deviceService;
-
-        public DeviceController(DeviceRepository deviceRepository, MakerRepository makerRepository, DeviceService deviceService) {
+        public DeviceController(DeviceRepository deviceRepository, MakerRepository makerRepository, NetService deviceService) {
             this.deviceRepository = deviceRepository;
             this.makerRepository = makerRepository;
             this.deviceService = deviceService;
@@ -60,35 +62,12 @@ public sealed interface DeviceStoreApi {
         public List<Device> getAllDevices(){
             return deviceService.getAllDevices();
         }
-
-        public String describe(String type, Long id){
-            //1. Declare generic repo based on entity 'type' above:
-            CrudRepository< ? extends  Entity<Long>, Long> crudRepository =
-                    switch(type.toLowerCase()){
-                             case "device" -> this.deviceRepository;
-                             case "maker" -> this.makerRepository;
-                             default ->null;
-                    };
-
-
-            //2. Query device os and maker name based on entity using J-17 Pattern Matching:
-
-                  Entity entity = crudRepository.findById(id).orElse(null);
-
-
-                 /*   return switch(entity){
-                        case Device device -> device.os();
-                        case Maker maker -> maker.name();
-                         default -> null;
-                     }; Similarly: */
-                if (entity instanceof  Maker maker){      // No need 4 null check!
-                    return maker.name();
-                }else if (  entity instanceof Device device){ // No need 4 null check!
-                    return device.os();
-                }
-            return null;
+        public List<Device> getBackupDevices(){
+            return deviceService.getBackupDevices();
         }
 
-    }
+        // This demos j17 pattern matching:
+        public String describe(String type, Long id) {return deviceService.describe(type, id); }
 
+    }
 }
