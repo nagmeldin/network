@@ -6,6 +6,10 @@ import io.micronaut.data.repository.CrudRepository;
 
 import java.util.List;
 
+/**
+ * @author: Nagm Eldin
+ */
+
 @JdbcRepository(dialect = Dialect.H2)
 public interface DeviceRepository extends CrudRepository<Device, Long> {
 

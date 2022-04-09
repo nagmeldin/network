@@ -6,6 +6,10 @@ import io.micronaut.http.annotation.Get;
 
 import java.util.List;
 
+/**
+ * @author: Nagm Eldin
+ */
+
 public sealed interface DeviceStoreApi {
 
     @Get("/")

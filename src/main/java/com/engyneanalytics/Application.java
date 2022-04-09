@@ -8,6 +8,10 @@ import jakarta.inject.Singleton;
 import javax.transaction.Transactional;
 import java.util.Arrays;
 
+/**
+ * @author: Nagm Eldin
+ */
+
 @Singleton
 public class Application {
     private final DeviceRepository deviceRepository;

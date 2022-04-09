@@ -6,6 +6,10 @@ import io.micronaut.data.annotation.MappedEntity;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * @author: Nagm Eldin
+ */
+
 @MappedEntity
 public record Maker(
         @GeneratedValue

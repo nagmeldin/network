@@ -11,6 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * @author: Nagm Eldin
+ */
+
 @Singleton
 public class NetService {
      //Repos Dependency Injection:
@@ -72,19 +76,20 @@ public class NetService {
                     default ->null;
                 };
 
-        //2. Query device os and maker name based on entity using J-17 Pattern Matching:
+        //2. Query device os and maker name based on entity using J-17 Pattern Matching(must be enabled in build.gradle):
         Entity entity = crudRepository.findById(id).orElse(null);
-                 /*   return switch(entity){
+                      return switch(entity){
                         case Device device -> device.os();
                         case Maker maker -> maker.name();
                          default -> null;
-                     }; Similarly: */
+                     };
+        /* Similarly:
         if (entity instanceof  Maker maker){          // No need 4 null check!
             return maker.name();
         }else if (  entity instanceof Device device){ // No need 4 null check!
             return device.os();
         }
-        return null;
+        return null; */
     }
 
 }
