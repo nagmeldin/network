@@ -47,8 +47,16 @@ public class NetService {
         ));
     }
 
+    public String welcome(){
+        return "Welcome to the network routers portal";
+    }
+
     public List<Device> getAllDevices(){
         return  deviceRepository.findAll();  // findAll() must be DeviceRepository Interface
+    }
+
+    public List<Maker> getAllMakes(){
+        return (List<Maker>) makerRepository.findAll();  // findAll() must be DeviceRepository Interface
     }
 
     //Hard-coded,No database:

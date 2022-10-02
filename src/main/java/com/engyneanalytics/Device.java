@@ -25,4 +25,8 @@ public record Device(
         @Nullable
         Maker maker
 ) implements Entity<Long> {
+
+        public Device(String os, int weight, Maker maker){
+               this(null, os, weight, maker) ;
+        }
 }

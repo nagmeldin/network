@@ -19,4 +19,7 @@ public record Maker(
         String name
 ) implements Entity<Long> {
 
+        public Maker( String name){
+                this(null, name);
+        }
 }

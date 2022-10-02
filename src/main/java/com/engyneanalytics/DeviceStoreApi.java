@@ -10,7 +10,10 @@ import java.util.List;
  * @author: Nagm Eldin
  */
 
+/*
 public sealed interface DeviceStoreApi {
+
+   /*
 
     @Get("/")
     String index();
@@ -73,4 +76,8 @@ public sealed interface DeviceStoreApi {
         public String describe(String type, Long id) {return deviceService.describe(type, id); }
 
     }
+
+
+
 }
+*/
